@@ -47,7 +47,7 @@ public abstract class AnimatedScene extends Animation
 		public void onUpdate(double duration);
 	}
 
-	private RenderingPanel renderingPanel;
+	private IRenderingPanel renderingPanel;
 	private Scene scene;
 	private AnimationUpdateHandler animationUpdateHandler;
 
@@ -82,7 +82,7 @@ public abstract class AnimatedScene extends Animation
 	 * @param renderingPanel
 	 * @param animationUpdateHandler this parameter used for updating debug info. Can be null.
 	 */
-	public void init(RenderingPanel renderingPanel, AnimationUpdateHandler animationUpdateHandler)
+	public void init(IRenderingPanel renderingPanel, AnimationUpdateHandler animationUpdateHandler)
 	{
 		this.renderingPanel = renderingPanel;
 		this.scene = new Scene();

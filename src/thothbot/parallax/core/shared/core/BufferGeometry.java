@@ -457,9 +457,8 @@ public class BufferGeometry extends AbstractGeometry
 			BufferAttribute normalAttribute = getAttribute("normal");
 
 			if ( normalAttribute == null ) {
-
-				this.addAttribute( "normal", new BufferAttribute( Float32Array.create( positions.getLength() ), 3 ) );
-
+				normalAttribute = new BufferAttribute( Float32Array.create( positions.getLength() ), 3 );
+				this.addAttribute( "normal", normalAttribute );
 			} else {
 
 				// reset existing normals to zero

@@ -50,7 +50,7 @@ import com.google.gwt.user.client.ui.LayoutPanel;
  * @author thothbot
  * 
  */
-public class RenderingPanel extends LayoutPanel implements IsWidget, HasWidgets, HasHandlers
+public class RenderingPanel extends LayoutPanel implements IsWidget, HasWidgets, HasHandlers, IRenderingPanel
 {	
 	public interface AnimationUpdateHandler 
 	{
@@ -94,16 +94,19 @@ public class RenderingPanel extends LayoutPanel implements IsWidget, HasWidgets,
 		updateBackground();
 	}
 	
+	/* (non-Javadoc)
+	 * @see thothbot.parallax.core.client.IRenderingPanel#getCanvas()
+	 */
+	@Override
 	public Canvas3d getCanvas()
 	{
 		return this.canvas;
 	}
 
-	/**
-	 * Gets {@link WebGLRenderer}. Use {@link AnimatedScene#getRenderer()} instead. 
-	 *  
-	 * @return {@link WebGLRenderer}
+	/* (non-Javadoc)
+	 * @see thothbot.parallax.core.client.IRenderingPanel#getRenderer()
 	 */
+	@Override
 	public WebGLRenderer getRenderer()
 	{
 		return this.renderer;
@@ -271,7 +274,7 @@ public class RenderingPanel extends LayoutPanel implements IsWidget, HasWidgets,
 	/**
 	 * This method is called when the implementor's size has been modified.
 	 */
-	@Override
+	//@Override
 	public void onResize() 
 	{
 		Log.debug("RenderingPanel: onResize()");

@@ -493,4 +493,31 @@ KeyDownHandler, KeyUpHandler, ContextMenuHandler
 			}
 		}
 	}
+
+
+	public void zoomCamera(double value)  {
+		
+		
+		double factor = 1.0 + ( value ) * this.zoomSpeed;
+		if ( factor != 1.0 && factor > 0.0 )  {
+			
+			eye.copy( this.getObject().getPosition() ).sub( this.target );
+
+			//zoom
+			eye.multiply( factor );
+
+			getObject().getPosition().add( this.target, this.eye );
+
+			checkDistances();
+
+			getObject().lookAt( this.target );
+
+			if ( lastPosition.distanceTo( getObject().getPosition() ) > 0 ) 
+			{	
+				lastPosition.copy( getObject().getPosition() );
+			}
+
+		}
+	}
+
 }

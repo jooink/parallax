@@ -25,6 +25,7 @@ import thothbot.parallax.core.client.gl2.arrays.ArrayBuffer;
 import thothbot.parallax.core.shared.Log;
 import thothbot.parallax.core.shared.core.AbstractGeometry;
 
+import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.xhr.client.ReadyStateChangeHandler;
 import com.google.gwt.xhr.client.XMLHttpRequest;
 import com.google.gwt.xhr.client.XMLHttpRequest.ResponseType;
@@ -61,11 +62,19 @@ public abstract class XHRLoader
 		this.modelLoadHandler = modelLoadHandler;
 	}
 
+	
+	private static final native void overrideMimeType(JavaScriptObject jso, String mt) /*-{
+		  jso.overrideMimeType(mt);
+	}-*/;
+	
 	protected void load() 
 	{		
 		final XMLHttpRequest request = XMLHttpRequest.create();
 		request.open( "GET", url );
 		request.setResponseType(this.responseType);
+		
+		overrideMimeType(request,"text/plain; charset=x-user-defined");
+
 		request.send( null );
 		
 		loadHandlers.add(modelLoadHandler);
